@@ -92,7 +92,7 @@ $('body').colorBand({
 Below are the options that can be passed to a `.colorBand()` invocation as an `options` object.
 
 ```javascript
-height: "8px",                  // The thickness of the band
+height: 8,                  // The thickness of the band
 minWidth: 10,                   // Minimum width of each 'chunk' in the band
 maxWidth: 50,                   // Maximum width of each 'chunk' in the band
 regenOnResize: true,            // Causes the band to re-render when the browser resizes
@@ -100,6 +100,7 @@ regenOnOrientationChange: true, // Causes the band to re-render when the
 ignoreCss: false,               // Skips the application of CSS to make the band look 'right'.
                                 // When true you must provide your own CSS for the band's container and chunks
 containerClass: 'colorband',    // Class name to apply to each color band
+units: 'px',                    // Unit of measure for the width and height each 'chunk' and the color band itself
 preventSameColorSiblings: true, // Prevents chunks that are side by side from being the same color as one another
 colors: [                       // Array of arbitrary length containing valid CSS background-color values (rgb strings are fine)
   '#94BFB1',

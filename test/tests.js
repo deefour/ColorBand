@@ -22,3 +22,21 @@ test('can ignore CSS application', function(){
   notEqual($('.container').css('position'), 'relative', 'CSS was ignored for target element');
   notEqual($('.colorband').css('position'), 'relative', 'CSS was ignored for the container');
 });
+
+test('appends default unit to height when not provided', function(){
+  $('.container').colorBand({ height: 8 });
+
+  equal($('.container').data('plugin_colorBand').options.height, '8px', 'height has units appended when no units provided');
+});
+
+test('does NOT append default unit to height when units are provided', function(){
+  $('.container').colorBand({ height: '8em' });
+
+  equal($('.container').data('plugin_colorBand').options.height, '8em', 'height maintains units when specified through instantiation of the color band');
+});
+
+test('units can be overridden', function(){
+  $('.container').colorBand({ height: 8, units: 'em' });
+
+  equal($('.container').data('plugin_colorBand').options.height, '8em', 'height adopts default units when units are specified through instantiation of the color band');
+});
