@@ -34,7 +34,7 @@ Browse at http://github.com/deefour/ColorBand/tree/master or clone from `git://g
 
 ### Examples
 
-Add a band across the top of the viewport by attaching it to the `<body>`.
+Add a band across the top of the viewport by attaching it to the `<body>`
 
 ```javascript
 $('body').colorBand();
