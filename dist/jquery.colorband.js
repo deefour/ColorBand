@@ -1,4 +1,4 @@
-/*! ColorBand - v1.0.0 - 2012-11-03
+/*! ColorBand - v1.1.0 - 2012-11-03
 * https://github.com/deefour/colorBand
 * Copyright (c) 2012 Jason Daly and other contributors; Licensed MIT */
 
@@ -9,13 +9,14 @@
   var pluginName = 'colorBand',
       document = window.document,
       defaults = {
-          height: "8px",
+          height: 8,
           minWidth: 10,
           maxWidth: 50,
           regenOnResize: true,
           regenOnOrientationChange: true,
           ignoreCss: false,
           containerClass: 'colorband',
+          units: 'px',
           preventSameColorSiblings: true,
           colors: [
             '#94BFB1',
@@ -32,8 +33,15 @@
       this.element  = element;
       this.$element = $(this.element);
 
-      this.options = $.extend( {}, defaults, options) ;
-        
+      this.options = $.extend( {}, defaults, options);
+
+      var self = this;
+      $.each(['height', 'minWidth', 'maxWidth'], function(){
+        if (defaults.units != self.options.units || /^\d+$/.test(self.options[this])) {
+          self.options[this] = self.options[this].toString().replace(/\D/g, '') + self.options.units;
+        }
+      });
+
       this._defaults = defaults;
       this._name = pluginName;
         
@@ -107,7 +115,7 @@
 
         chunk = $('<div />').addClass('chunk').css({
           background: this.options.colors[colorIndex],
-          width: chunkWidth + 'px'
+          width: chunkWidth + this.options.units
         });
 
         if (!this.options.ignoreCss) {

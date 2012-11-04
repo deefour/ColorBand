@@ -40,3 +40,9 @@ test('units can be overridden', function(){
 
   equal($('.container').data('plugin_colorBand').options.height, '8em', 'height adopts default units when units are specified through instantiation of the color band');
 });
+
+test('units on options will be stripped if units option is specified', function(){
+  $('.container').colorBand({ height: '8px', units: 'em' });
+
+  equal($('.container').data('plugin_colorBand').options.height, '8em', 'height adopts overridden default unit when specified');
+});

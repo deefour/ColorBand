@@ -31,9 +31,12 @@
 
       this.options = $.extend( {}, defaults, options);
 
-      if (/^\d+$/.test(this.options.height)) {
-        this.options.height = this.options.height + this.options.units;
-      }
+      var self = this;
+      $.each(['height', 'minWidth', 'maxWidth'], function(){
+        if (defaults.units != self.options.units || /^\d+$/.test(self.options[this])) {
+          self.options[this] = self.options[this].toString().replace(/\D/g, '') + self.options.units;
+        }
+      });
 
       this._defaults = defaults;
       this._name = pluginName;

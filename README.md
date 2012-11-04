@@ -112,7 +112,16 @@ colors: [                       // Array of arbitrary length containing valid CS
 ]
 ```
 
+### Notes
+
+ - Units of measure set directly on the `height`, `minWidth`, or `maxWidth` options are stripped. The `units` option should be used to alter the unit of measure for the color band.
+
 ## Changelog
+
+### Version 1.1.0 - November 03 2012
+
+ - `units` option added
+ - `height` option can now have a unit specified or omitted; when specified they will simply be stripped and the `units` option will be appended as the unit of measure
 
 ### Version 1.0.0 - November 03 2012
 
