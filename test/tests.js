@@ -25,24 +25,34 @@ test('can ignore CSS application', function(){
 
 test('appends default unit to height when not provided', function(){
   $('.container').colorBand({ height: 8 });
+  
+  var plugin = $('.container').data('plugin_colorBand');
 
-  equal($('.container').data('plugin_colorBand').options.height, '8px', 'height has units appended when no units provided');
+  equal(plugin.options.height + plugin.options.units, '8px', 'height has units appended when no units provided');
 });
 
-test('does NOT append default unit to height when units are provided', function(){
-  $('.container').colorBand({ height: '8em' });
+test('strips units applied to height or minWidth or maxWidth', function(){
+  $('.container').colorBand({ height: '8em', minWidth: '8ex', maxWidth: 8 });
 
-  equal($('.container').data('plugin_colorBand').options.height, '8em', 'height maintains units when specified through instantiation of the color band');
+  var plugin = $('.container').data('plugin_colorBand');
+
+  equal(plugin.options.height, 8, 'height has units stripped');
+  equal(plugin.options.minWidth, 8, 'height has units stripped');
+  equal(plugin.options.maxWidth, 8, 'height has units stripped');
 });
 
 test('units can be overridden', function(){
   $('.container').colorBand({ height: 8, units: 'em' });
 
-  equal($('.container').data('plugin_colorBand').options.height, '8em', 'height adopts default units when units are specified through instantiation of the color band');
+  var plugin = $('.container').data('plugin_colorBand');
+
+  equal(plugin.options.height + plugin.options.units, '8em', 'height adopts default units when units are specified through instantiation of the color band');
 });
 
 test('units on options will be stripped if units option is specified', function(){
   $('.container').colorBand({ height: '8px', units: 'em' });
 
-  equal($('.container').data('plugin_colorBand').options.height, '8em', 'height adopts overridden default unit when specified');
+  var plugin = $('.container').data('plugin_colorBand');
+
+  equal(plugin.options.height + plugin.options.units, '8em', 'height adopts overridden default unit when specified');
 });

@@ -1,4 +1,4 @@
-/*! ColorBand - v1.1.0 - 2012-11-03
+/*! ColorBand - v1.1.1 - 2012-11-03
 * https://github.com/deefour/colorBand
 * Copyright (c) 2012 Jason Daly and other contributors; Licensed MIT */
 
@@ -37,9 +37,7 @@
 
       var self = this;
       $.each(['height', 'minWidth', 'maxWidth'], function(){
-        if (defaults.units != self.options.units || /^\d+$/.test(self.options[this])) {
-          self.options[this] = self.options[this].toString().replace(/\D/g, '') + self.options.units;
-        }
+        self.options[this] = +self.options[this].toString().replace(/\D/g, '');
       });
 
       this._defaults = defaults;
@@ -70,11 +68,11 @@
           padding: 0,
           top: 0,
           left: 0,
-          height: this.options.height,
+          height: this.options.height + this.options.units,
           'white-space': 'nowrap',
           'overflow-x': 'hidden',
           'overflow-y': 'visible',
-          'line-height': this.options.height
+          'line-height': this.options.height + this.options.units
         });
       }
 
@@ -99,7 +97,7 @@
           lastColorIndex = -1,
           colorBandWidth    = 0,
           colorIndex, chunk, chunkWidth;
-    
+      
       while (--chunkCount > 0 && colorBandWidth < containerWidth) {
         colorIndex = Math.floor(Math.random()*colorCount);
 
@@ -120,8 +118,8 @@
 
         if (!this.options.ignoreCss) {
           chunk.css({
-            height: this.options.height,
-            'line-height': this.options.height,
+            height: this.options.height + this.options.units,
+            'line-height': this.options.height + this.options.units,
             display: 'inline-block',
             padding: 0,
             margin: 0
