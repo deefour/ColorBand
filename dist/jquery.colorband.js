@@ -1,4 +1,4 @@
-/*! ColorBand - v1.2.1 - 2012-11-04
+/*! ColorBand - v1.3.0 - 2012-11-05
 * https://github.com/deefour/colorBand
 * Copyright (c) 2012 Jason Daly and other contributors; Licensed MIT */
 
@@ -13,6 +13,7 @@
           minWidth: 10,
           maxWidth: 50,
           mode: 'auto',
+          pattern: 'random',
           regenOnResize: true,
           regenOnOrientationChange: true,
           ignoreCss: false,
@@ -46,6 +47,10 @@
         this._mode = this._isCanvasSupported() ? 'canvas' : 'html';
       } else if (this._mode === 'canvas' && !this._isCanvasSupported()) {
         return; // die if 'canvas' mode was specified but it's not supported by the client
+      }
+
+      if (typeof this.options.pattern === 'string' && /^\d+$/.test(this.options.pattern)) {
+        this.options.pattern = this.options.pattern.split('').map(function(n){  return +n; });
       }
 
       this._defaults = defaults;
@@ -127,6 +132,8 @@
         ctx.clearRect(0, 0, c.width, c.height);
         this.$container.attr('width', this.$element.width());
       }
+
+      this._patternPointer = -1;
     },
 
     _renderChunk: function(colorIndex, chunkWidth, colorBandWidth) {
@@ -146,7 +153,7 @@
           });
         }
        
-        this.$container.prepend(chunk);
+        this.$container.append(chunk);
       } else {
         var ctx = this.$container.get(0).getContext('2d');
         ctx.fillStyle = this.options.colors[colorIndex];
@@ -154,25 +161,39 @@
       }
     },
 
+    _getColor: function(lastColorIndex){
+      var colorCount = this.options.colors.length,
+          colorIndex;
+
+
+      if ($.isArray(this.options.pattern)) {
+        colorIndex = this.options.pattern[++this._patternPointer % this.options.pattern.length];
+      } else if (this.options.pattern === 'sequential') {
+        colorIndex = ++lastColorIndex % colorCount;
+      } else { // 'random', default
+        colorIndex = Math.floor(Math.random()*colorCount);
+
+        if (this.options.preventSameColorSiblings) {
+          while (colorIndex === lastColorIndex) {
+            colorIndex = this._getColor(lastColorIndex);
+          }
+        }
+      }
+
+      return colorIndex;
+    },
+
     render: function(){
       this._reset();
  
       var chunkCount     = Math.ceil(this.$container.width()/this.options.minWidth),
           containerWidth = this.$container.width(),
-          colorCount     = this.options.colors.length,
           lastColorIndex = -1,
           colorBandWidth = -1,
           colorIndex, chunkWidth;
       
       while (--chunkCount > 0 && colorBandWidth < containerWidth) {
-        colorIndex = Math.floor(Math.random()*colorCount);
-
-        if (this.options.preventSameColorSiblings) {
-          while (colorIndex === lastColorIndex) {
-            colorIndex = Math.floor(Math.random()*colorCount);
-          }
-          lastColorIndex = colorIndex;
-        }
+        colorIndex = lastColorIndex = this._getColor(lastColorIndex);
        
         chunkWidth = Math.floor(Math.random()*(this.options.maxWidth-this.options.minWidth)+this.options.minWidth);
         

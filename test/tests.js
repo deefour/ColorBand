@@ -1,3 +1,9 @@
+function getChunk(index) {
+  return $($('.colorband').find('.chunk')[index]);
+}
+
+
+
 test('is chainable', function(){
   ok($('.container').colorBand().addClass('chained'), 'is chainable');
   ok($('.container').hasClass('chained'), 'class was added through chaining');
@@ -66,5 +72,94 @@ test('if canvas is supported it will be used when mode is set to auto', function
 test('if html mode is specified, divs will be rendered', function(){
   $('.container').colorBand({ mode: 'html' });
 
-  ok($('.colorband').find('div').length > 0, 'div tags are found within the color band container');
+  ok($('.colorband').find('.chunk').length > 0, 'div tags are found within the color band container');
+});
+
+
+
+
+test('render pattern is random by default', function(){
+  $('.container').colorBand({ 
+    mode: 'html',
+    colors: ["rgb(255,0,0)", "rgb(255,255,0)", "rgb(255,0,255)", "rgb(255,255,255)", "rgb(0,0,0)", "rgb(0,255,255)"]
+  });
+
+  var plugin = $('.container').data('plugin_colorBand');
+
+  equal(plugin.options.pattern, 'random', 'the pattern option is random');
+  
+  var bg = getChunk(0).css('background-color');
+  
+  plugin.render();
+
+  notEqual(bg, getChunk(0).css('background-color'), 'initial chunk is randomly selected from the colors option');
+});
+
+test('sequential pattern renders colors sequentially', function(){
+  var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
+
+  $('.container').colorBand({ 
+    mode: 'html',
+    pattern: 'sequential',
+    colors: colors
+  });
+
+  var plugin = $('.container').data('plugin_colorBand');
+
+  equal(getChunk(0).css('background-color'), colors[0], 'first chunk color was selected sequentially');
+  equal(getChunk(1).css('background-color'), colors[1], 'second chunk color was selected sequentially');
+
+  plugin.render();
+
+  equal(getChunk(0).css('background-color'), colors[0], 'new render: first chunk color was selected sequentially');
+  equal(getChunk(1).css('background-color'), colors[1], 'new render: second chunk color was selected sequentially');  
+});
+
+test('sequential pattern ignores preventSameColorSiblings option', function(){
+  var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
+
+  $('.container').colorBand({ 
+    mode: 'html',
+    pattern: 'sequential',
+    colors: colors
+  });
+
+  equal(getChunk(1).css('background-color'), colors[1], 'second chunk color was selected sequentially; not modified because it was a duplicate of the previous color');
+});
+
+test('custom pattern accepts a string of integers', function(){
+  var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
+  
+  $('.container').colorBand({ 
+    mode: 'html',
+    pattern: '121213',
+    colors: colors
+  });
+
+  equal(getChunk(2).css('background-color'), colors[1], 'custom pattern as string is parsed properly');
+});
+
+test('custom pattern accepts array of integers', function(){
+  var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
+
+  $('.container').colorBand({ 
+    mode: 'html',
+    pattern: '121213'.split(''),
+    colors: colors
+  });
+
+  equal(getChunk(2).css('background-color'), colors[1], 'custom pattern as string is parsed properly');
+});
+
+test('custom pattern ignores preventSameColorSiblings option', function(){
+  var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
+
+  $('.container').colorBand({ 
+    mode: 'html',
+    pattern: '112'.split(''),
+    colors: colors
+  });
+
+  equal(getChunk(0).css('background-color'), colors[1], 'first chunk is colored properly');
+  equal(getChunk(1).css('background-color'), colors[1], 'second chunk match its sibling properly');
 });

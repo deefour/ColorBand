@@ -87,6 +87,24 @@ $('body').colorBand({
 });
 ```
 
+Specify a custom pattern
+
+```javascript
+$('body').colorBand({
+  pattern: '1637482642742', // each character maps to an index in the colors option
+  colors: [ // Solarized colors from http://ethanschoonover.com/solarized
+    '#B58900',
+    '#CB4B16',
+    '#DC322F',
+    '#D33682',
+    '#6C71C4',
+    '#268BD2',
+    '#2AA198',
+    '#859900',
+  ]
+});
+```
+
 ### Options
 
 Below are the options that can be passed to a `.colorBand()` invocation as an `options` object.
@@ -96,6 +114,10 @@ height: 8,                      // The thickness of the band
 minWidth: 10,                   // Minimum width of each 'chunk' in the band
 maxWidth: 50,                   // Maximum width of each 'chunk' in the band
 mode: 'auto',                   // Method for rendering the band  auto|html|canvas
+pattern: 'random',              // Specifies the pattern to use for the colored ordering of the chunks
+                                //   - 'random': selects a random color from the colors option
+                                //   - 'sequential': repeatedly loops through the colors option in the order they appear in the array
+                                //   - '12121234' or [1,2,1,2,1,2,3,4]: (custom) per-character index mapping agains the colors option
 regenOnResize: true,            // Causes the band to re-render when the browser resizes
 regenOnOrientationChange: true, // Causes the band to re-render when the 
 ignoreCss: false,               // Skips the application of CSS to make the band look 'right'.
@@ -117,8 +139,15 @@ colors: [                       // Array of arbitrary length containing valid CS
 
  - Units of measure set directly on the `height`, `minWidth`, or `maxWidth` options are stripped. The `units` option should be used to alter the unit of measure for the color band.
  - The `mode` option is set to `auto` by default. If the client supports the HTML `<canvas>` tag, a single canvas will be used for each color band rendered. If the `mode` is explicitly set to `html` or the client does not support the `<canvas>` tag, HTML `<div>` elements will be used for each chunk in each color band.
+ - The `preventSameColorSiblings` option is ignored unless the `pattern` option is set to `random` *(the default)*.
 
 ## Changelog
+
+### Version 1.3.0 - November 05 2012
+
+Pattern modes available
+
+ - New `pattern` option now available for specifying the selection method for the color of each chunk in the color bar
 
 ### Version 1.2.0 - November 04 2012
 
