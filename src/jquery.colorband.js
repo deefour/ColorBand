@@ -38,9 +38,9 @@
       });
 
       this._mode = this.options.mode;
-      if (this._mode == 'auto') {
+      if (this._mode === 'auto') {
         this._mode = this._isCanvasSupported() ? 'canvas' : 'html';
-      } else if (this._mode == 'canvas' && !this._isCanvasSupported()) {
+      } else if (this._mode === 'canvas' && !this._isCanvasSupported()) {
         return; // die if 'canvas' mode was specified but it's not supported by the client
       }
 
@@ -52,7 +52,7 @@
 
   Plugin.prototype = {
     init: function () {
-      if (this._mode == 'html') {
+      if (this._mode === 'html') {
         this.$container = $('<div />').addClass(this.options.containerClass);
 
         if (!this.options.ignoreCss) {
@@ -83,7 +83,7 @@
         this.$container = $('<canvas />').addClass(this.options.containerClass);
 
         this.$container.attr({
-          height: this.options.height,
+          height: this.options.height
         });
 
         if (!this.options.ignoreCss) {
@@ -110,7 +110,7 @@
     },
 
     _reset: function(){
-      if (this._mode == 'html') {
+      if (this._mode === 'html') {
         this.$container.empty();
         this.$container.width(this.$element.width());
       } else {
@@ -123,7 +123,7 @@
     },
 
     _renderChunk: function(colorIndex, chunkWidth, colorBandWidth) {
-      if (this._mode == 'html') {
+      if (this._mode === 'html') {
         var chunk = $('<div />').addClass('chunk').css({
           background: this.options.colors[colorIndex],
           width: chunkWidth + this.options.units
