@@ -56,3 +56,15 @@ test('units on options will be stripped if units option is specified', function(
 
   equal(plugin.options.height + plugin.options.units, '8em', 'height adopts overridden default unit when specified');
 });
+
+test('if canvas is supported it will be used when mode is set to auto', function(){
+  $('.container').colorBand();
+
+  ok($('.colorband').prop('tagName').toLowerCase() === 'canvas', 'the color band container is a canvas tag');  
+});
+
+test('if html mode is specified, divs will be rendered', function(){
+  $('.container').colorBand({ mode: 'html' });
+
+  ok($('.colorband').find('div').length > 0, 'div tags are found within the color band container');
+});

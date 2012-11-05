@@ -92,9 +92,10 @@ $('body').colorBand({
 Below are the options that can be passed to a `.colorBand()` invocation as an `options` object.
 
 ```javascript
-height: 8,                  // The thickness of the band
+height: 8,                      // The thickness of the band
 minWidth: 10,                   // Minimum width of each 'chunk' in the band
 maxWidth: 50,                   // Maximum width of each 'chunk' in the band
+mode: 'auto',                   // Method for rendering the band  auto|html|canvas
 regenOnResize: true,            // Causes the band to re-render when the browser resizes
 regenOnOrientationChange: true, // Causes the band to re-render when the 
 ignoreCss: false,               // Skips the application of CSS to make the band look 'right'.
@@ -115,6 +116,7 @@ colors: [                       // Array of arbitrary length containing valid CS
 ### Notes
 
  - Units of measure set directly on the `height`, `minWidth`, or `maxWidth` options are stripped. The `units` option should be used to alter the unit of measure for the color band.
+ - The `mode` option is set to `auto` by default. If the client supports the HTML `<canvas>` tag, a single canvas will be used for each color band rendered. If the `mode` is explicitly set to `html` or the client does not support the `<canvas>` tag, HTML `<div>` elements will be used for each chunk in each color band.
 
 ## Changelog
 
