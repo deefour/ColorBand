@@ -1,4 +1,4 @@
-/*! ColorBand - v1.2 - 2012-11-04
+/*! ColorBand - v1.2.1 - 2012-11-04
 * https://github.com/deefour/colorBand
 * Copyright (c) 2012 Jason Daly and other contributors; Licensed MIT */
 
@@ -56,20 +56,23 @@
 
   Plugin.prototype = {
     init: function () {
+      if (!this.options.ignoreCss) {
+        this.$element.css({
+          position: 'relative',
+          'padding-top': 0,
+          'padding-left': 0,
+          'padding-right': 0,
+          'margin-top': 0,
+          'margin-left': 0,
+          'margin-right': 0,
+          'line-height': 1
+        });
+      }
+
       if (this._mode === 'html') {
         this.$container = $('<div />').addClass(this.options.containerClass);
 
         if (!this.options.ignoreCss) {
-          this.$element.css({
-            position: 'relative',
-            'padding-top': 0,
-            'padding-left': 0,
-            'padding-right': 0,
-            'margin-top': 0,
-            'margin-left': 0,
-            'margin-right': 0
-          });
-
           this.$container.css({
             position: 'relative',
             margin: 0,
