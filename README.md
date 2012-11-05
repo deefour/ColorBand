@@ -120,6 +120,13 @@ colors: [                       // Array of arbitrary length containing valid CS
 
 ## Changelog
 
+### Version 1.2.0 - November 04 2012
+
+Render modes available
+
+ - New `mode` option now available for specifying how the color bands should be rendered
+ - Color bands will now be rendered via a `<canvas>` tag by default *(as long as the client supports it)*
+
 ### Version 1.1.0 - November 03 2012
 
  - `units` option added
