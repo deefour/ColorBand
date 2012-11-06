@@ -27,7 +27,7 @@
       "url": "https://github.com/deefour/colorBand/blob/master/LICENSE"
     }
   ],
-  "main": "",
+  "main": "dist/jquery.colorband.js",
   "engines": {
     "node": ">=0.6"
   },
