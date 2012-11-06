@@ -1,3 +1,4 @@
 build/.sizecache.json
 .DS_Store
 node_modules
+.rbenv-*

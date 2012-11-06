@@ -27,11 +27,19 @@
       "url": "https://github.com/deefour/colorBand/blob/master/LICENSE"
     }
   ],
-  "dependencies": {},
+  "main": "",
+  "engines": {
+    "node": ">=0.6"
+  },
+  "dependencies": {
+  },
   "devDependencies": {
     "grunt": "~0.3.17",
     "grunt-compare-size": ">=0.1.4",
     "grunt-git-authors": "1.0.0"
+  },
+  "scripts": {
+    "test": "grunt travis --verbose"
   },
   "keywords": [ "color", "accent" ]
 }

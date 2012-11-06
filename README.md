@@ -1,5 +1,7 @@
 # ColorBand
 
+[![Build Status](https://secure.travis-ci.org/deefour/ColorBand.png)](http://travis-ci.org/deefour/ColorBand)
+
 Decorative bands for DOM elements with jQuery
 
 (c) 2012 Jason Daly (jason@deefour.me)

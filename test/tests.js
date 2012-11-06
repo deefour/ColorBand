@@ -87,12 +87,6 @@ test('render pattern is random by default', function(){
   var plugin = $('.container').data('plugin_colorBand');
 
   equal(plugin.options.pattern, 'random', 'the pattern option is random');
-  
-  var bg = getChunk(0).css('background-color');
-  
-  plugin.render();
-
-  notEqual(bg, getChunk(0).css('background-color'), 'initial chunk is randomly selected from the colors option');
 });
 
 test('sequential pattern renders colors sequentially', function(){
