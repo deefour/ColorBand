@@ -27,16 +27,11 @@
       "url": "https://github.com/deefour/colorBand/blob/master/LICENSE"
     }
   ],
-  "main": "dist/jquery.colorband.js",
-  "engines": {
-    "node": ">=0.6"
-  },
   "dependencies": {
+    "jquery": ">=1.7"
   },
   "devDependencies": {
-    "grunt": "~0.3.17",
-    "grunt-compare-size": ">=0.1.4",
-    "grunt-git-authors": "1.0.0"
+    "grunt": "~0.3.17"
   },
   "scripts": {
     "test": "grunt travis --verbose"
