@@ -157,3 +157,19 @@ test('custom pattern ignores preventSameColorSiblings option', function(){
   equal(getChunk(0).css('background-color'), colors[1], 'first chunk is colored properly');
   equal(getChunk(1).css('background-color'), colors[1], 'second chunk match its sibling properly');
 });
+
+test('function can be used for pattern', function(){
+  var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
+
+  $('.container').colorBand({ 
+    mode: 'html',
+    pattern: function(lastColorIndex) {
+      return 1;
+    },
+    preventSameColorSiblings: false,
+    colors: colors
+  });
+
+  equal(getChunk(0).css('background-color'), colors[1], 'first chunk is colored properly');
+  equal(getChunk(1).css('background-color'), colors[1], 'second chunk match its sibling properly');
+});

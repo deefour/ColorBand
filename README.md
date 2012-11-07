@@ -107,6 +107,28 @@ $('body').colorBand({
 });
 ```
 
+User-defined functions can be used to specify custom patterns too
+
+```javascript
+$('body').colorBand({
+  pattern: function (lastColorIndex) { // selects random index from 1/3 of this.options.colors based on hour in the day
+    var min = Math.floor((new Date).getHours() / this.colors.length) * 3;
+    
+    return Math.round(min + Math.random()*2;
+  },
+  colors: [ // Solarized colors from http://ethanschoonover.com/solarized
+    '#B58900',
+    '#CB4B16',
+    '#DC322F',
+    '#D33682',
+    '#6C71C4',
+    '#268BD2',
+    '#2AA198',
+    '#859900',
+  ]
+});
+```
+
 ### Options
 
 Below are the options that can be passed to a `.colorBand()` invocation as an `options` object.
@@ -120,6 +142,7 @@ pattern: 'random',              // Specifies the pattern to use for the colored 
                                 //   - 'random': selects a random color from the colors option
                                 //   - 'sequential': repeatedly loops through the colors option in the order they appear in the array
                                 //   - '12121234' or [1,2,1,2,1,2,3,4]: (custom) per-character index mapping agains the colors option
+                                //   - (function): A user-defined function, returning an integer matching an index value in the range of the colors option's array
 regenOnResize: true,            // Causes the band to re-render when the browser resizes
 regenOnOrientationChange: true, // Causes the band to re-render when the 
 ignoreCss: false,               // Skips the application of CSS to make the band look 'right'.
@@ -141,9 +164,17 @@ colors: [                       // Array of arbitrary length containing valid CS
 
  - Units of measure set directly on the `height`, `minWidth`, or `maxWidth` options are stripped. The `units` option should be used to alter the unit of measure for the color band.
  - The `mode` option is set to `auto` by default. If the client supports the HTML `<canvas>` tag, a single canvas will be used for each color band rendered. If the `mode` is explicitly set to `html` or the client does not support the `<canvas>` tag, HTML `<div>` elements will be used for each chunk in each color band.
- - The `preventSameColorSiblings` option is ignored unless the `pattern` option is set to `random` *(the default)*.
+ - The `preventSameColorSiblings` option is ignored unless the `pattern` option is set to `random` *(the default)* or a user-defined function.
+ - The user-defined function `pattern` option's `this` context is bound to the ColorBand instance itself, giving you full access and control over
+ the class instance including manipulating existing properties and options, as well as adding your own.
 
 ## Changelog
+
+### Version 1.4.0 - November 07 2012
+
+User-defined function now accepted as pattern mode
+
+ - Passing a function to the `pattern` option that returns an in-range index corresponding to an item in `this.options.colors` is now supported
 
 ### Version 1.3.0 - November 05 2012
 

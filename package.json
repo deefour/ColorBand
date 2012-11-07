@@ -3,7 +3,7 @@
   "name": "jquery.colorband",
   "title": "ColorBand",
   "description": "jQuery plugin for adding a decorative band to the top of an element.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "homepage": "https://github.com/deefour/colorBand",
   "author": {
     "name": "Jason Daly and other contributors",

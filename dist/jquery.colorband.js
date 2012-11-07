@@ -1,4 +1,4 @@
-/*! ColorBand - v1.3.0 - 2012-11-05
+/*! ColorBand - v1.4.0 - 2012-11-07
 * https://github.com/deefour/colorBand
 * Copyright (c) 2012 Jason Daly and other contributors; Licensed MIT */
 
@@ -165,13 +165,16 @@
       var colorCount = this.options.colors.length,
           colorIndex;
 
-
       if ($.isArray(this.options.pattern)) {
         colorIndex = this.options.pattern[++this._patternPointer % this.options.pattern.length];
       } else if (this.options.pattern === 'sequential') {
         colorIndex = ++lastColorIndex % colorCount;
       } else { // 'random', default
-        colorIndex = Math.floor(Math.random()*colorCount);
+        if ($.isFunction(this.options.pattern)) {
+          colorIndex = this.options.pattern.apply(this, [lastColorIndex]);
+        } else {
+          colorIndex = Math.floor(Math.random()*colorCount);
+        }
 
         if (this.options.preventSameColorSiblings) {
           while (colorIndex === lastColorIndex) {
