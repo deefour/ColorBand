@@ -112,9 +112,8 @@ User-defined functions can be used to specify custom patterns too
 ```javascript
 $('body').colorBand({
   pattern: function (lastColorIndex) { // selects random index from 1/3 of this.options.colors based on hour in the day
-    var min = Math.floor((new Date).getHours() / this.colors.length) * 3;
-    
-    return Math.round(min + Math.random()*2;
+    var min = Math.floor((new Date).getHours() / this.options.colors.length) * 3;
+    return Math.round(min + Math.random()*2);
   },
   colors: [ // Solarized colors from http://ethanschoonover.com/solarized
     '#B58900',
