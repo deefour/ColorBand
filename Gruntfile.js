@@ -17,21 +17,14 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
-    min: {
+    uglify: {
       dist: {
         src: ['<banner:meta.banner>', '<config:concat.dist.dest>'],
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
     qunit: {
-      files: ['test/**/*.htm']
-    },
-    lint: {
-      files: ['grunt.js', 'src/**/*.js']//, 'test/**/*.js']
-    },
-    watch: {
-      files: '<config:lint.files>',
-      tasks: 'lint qunit'
+      all: ['test/**/*.htm']
     },
     jshint: {
       options: {
@@ -45,17 +38,28 @@ module.exports = function(grunt) {
         undef: true,
         boss: true,
         eqnull: true,
-        browser: true
+        browser: true,
+        globals: {
+          jQuery: true
+        }
       },
-      globals: {
-        jQuery: true
-      }
+      files: ['grunt.js', 'src/**/*.js']//, 'test/**/*.js']
+    },
+    watch: {
+      files: ['<%= jshint.files %>'],
+      tasks: ['jshint', 'qunit']
     }
   });
 
-  // Default task.
-  grunt.registerTask('default', 'lint qunit concat min');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.registerTask('travis', 'lint qunit');
+  // Default task.
+  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+
+  grunt.registerTask('travis', ['jshint', 'qunit']);
 
 };
