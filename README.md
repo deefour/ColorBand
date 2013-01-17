@@ -4,7 +4,7 @@
 
 Decorative bands for DOM elements with jQuery
 
-(c) 2012 Jason Daly (jason@deefour.me)
+(c) 2012 Jason Daly <jason@deefour.me> (http://deefour.me)
 
 Released under The MIT License.
 
