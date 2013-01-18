@@ -1,34 +1,34 @@
 {
-  "name": "colorband",
-  "title": "ColorBand",
-  "description": "jQuery plugin for adding a decorative band to the top of an element.",
-  "keywords": [
+  "name":"colorband",
+  "title":"ColorBand",
+  "description":"jQuery plugin for adding a decorative band to the top of an element.",
+  "keywords":[
     "color",
     "accent",
     "decorative"
   ],
-  "version": "1.4.1",
-  "homepage": "https://github.com/deefour/colorband",
-  "author": {
-    "name": "Jason Daly and other contributors",
-    "url": "https://github.com/deefour/colorband/blob/master/AUTHORS"
+  "version":"1.4.1",
+  "homepage":"https://github.com/deefour/colorband",
+  "author":{
+    "name":"Jason Daly and other contributors",
+    "url":"https://github.com/deefour/colorband/blob/master/AUTHORS"
   },
-  "maintainers": [
+  "maintainers":[
     {
-      "name": "Jason Daly",
-      "email": "jason@deefour.me",
-      "url": "http://deefour.me"
+      "name":"Jason Daly",
+      "email":"jason@deefour.me",
+      "url":"http://deefour.me"
     }
   ],
-  "download": "https://github.com/deefour/colorband",
-  "licenses": [
+  "download":"https://github.com/deefour/colorband",
+  "licenses":[
     {
-      "type": "MIT",
-      "url": "https://github.com/deefour/colorband/blob/master/LICENSE"
+      "type":"MIT",
+      "url":"https://github.com/deefour/colorband/blob/master/LICENSE"
     }
   ],
-  "bugs": "https://github.com/deefour/colorband/issues",
-  "dependencies": {
-    "jquery": ">=1.7"
+  "bugs":"https://github.com/deefour/colorband/issues",
+  "dependencies":{
+    "jquery":">=1.7"
   }
 }
