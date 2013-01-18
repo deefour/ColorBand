@@ -31,7 +31,7 @@ test('can ignore CSS application', function(){
 
 test('appends default unit to height when not provided', function(){
   $('.container').colorBand({ height: 8 });
-  
+
   var plugin = $('.container').data('plugin_colorBand');
 
   equal(plugin.options.height + plugin.options.units, '8px', 'height has units appended when no units provided');
@@ -66,7 +66,7 @@ test('units on options will be stripped if units option is specified', function(
 test('if canvas is supported it will be used when mode is set to auto', function(){
   $('.container').colorBand();
 
-  ok($('.colorband').prop('tagName').toLowerCase() === 'canvas', 'the color band container is a canvas tag');  
+  ok($('.colorband').prop('tagName').toLowerCase() === 'canvas', 'the color band container is a canvas tag');
 });
 
 test('if html mode is specified, divs will be rendered', function(){
@@ -79,7 +79,7 @@ test('if html mode is specified, divs will be rendered', function(){
 
 
 test('render pattern is random by default', function(){
-  $('.container').colorBand({ 
+  $('.container').colorBand({
     mode: 'html',
     colors: ["rgb(255,0,0)", "rgb(255,255,0)", "rgb(255,0,255)", "rgb(255,255,255)", "rgb(0,0,0)", "rgb(0,255,255)"]
   });
@@ -92,7 +92,7 @@ test('render pattern is random by default', function(){
 test('sequential pattern renders colors sequentially', function(){
   var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
 
-  $('.container').colorBand({ 
+  $('.container').colorBand({
     mode: 'html',
     pattern: 'sequential',
     colors: colors
@@ -106,13 +106,13 @@ test('sequential pattern renders colors sequentially', function(){
   plugin.render();
 
   equal(getChunk(0).css('background-color'), colors[0], 'new render: first chunk color was selected sequentially');
-  equal(getChunk(1).css('background-color'), colors[1], 'new render: second chunk color was selected sequentially');  
+  equal(getChunk(1).css('background-color'), colors[1], 'new render: second chunk color was selected sequentially');
 });
 
 test('sequential pattern ignores preventSameColorSiblings option', function(){
   var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
 
-  $('.container').colorBand({ 
+  $('.container').colorBand({
     mode: 'html',
     pattern: 'sequential',
     colors: colors
@@ -123,8 +123,8 @@ test('sequential pattern ignores preventSameColorSiblings option', function(){
 
 test('custom pattern accepts a string of integers', function(){
   var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
-  
-  $('.container').colorBand({ 
+
+  $('.container').colorBand({
     mode: 'html',
     pattern: '121213',
     colors: colors
@@ -136,7 +136,7 @@ test('custom pattern accepts a string of integers', function(){
 test('custom pattern accepts array of integers', function(){
   var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
 
-  $('.container').colorBand({ 
+  $('.container').colorBand({
     mode: 'html',
     pattern: '121213'.split(''),
     colors: colors
@@ -148,7 +148,7 @@ test('custom pattern accepts array of integers', function(){
 test('custom pattern ignores preventSameColorSiblings option', function(){
   var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
 
-  $('.container').colorBand({ 
+  $('.container').colorBand({
     mode: 'html',
     pattern: '112'.split(''),
     colors: colors
@@ -161,7 +161,7 @@ test('custom pattern ignores preventSameColorSiblings option', function(){
 test('function can be used for pattern', function(){
   var colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(255, 0, 255)"];
 
-  $('.container').colorBand({ 
+  $('.container').colorBand({
     mode: 'html',
     pattern: function(lastColorIndex) {
       return 1;
