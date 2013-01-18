@@ -1,4 +1,4 @@
-/** ColorBand - v1.4.2 - 2013-01-17
+/** ColorBand - v1.4.3 - 2013-01-18
  * https://github.com/deefour/colorband
  * Copyright (c) 2013 Jason Daly and other contributors; Licensed MIT
  */
