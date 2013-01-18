@@ -32,6 +32,9 @@ module.exports = function(grunt) {
       }
     },
     qunit: {
+      options: {
+        timeout: 12000
+      },
       all: ['test/**/*.htm']
     },
     jshint: {
