@@ -4,7 +4,7 @@
 
 Decorative bands for DOM elements with jQuery
 
-(c) 2012 Jason Daly <jason@deefour.me> (http://deefour.me)
+(c) 2013 Jason Daly <jason@deefour.me> (http://deefour.me)
 
 Released under The MIT License.
 
@@ -57,7 +57,7 @@ $('body').colorBand({ height: '32px' });
 Provide your own set of colors
 
 ```javascript
-$('body').colorBand({ 
+$('body').colorBand({
   colors: [ // Solarized colors from http://ethanschoonover.com/solarized
     '#B58900',
     '#CB4B16',
@@ -143,7 +143,7 @@ pattern: 'random',              // Specifies the pattern to use for the colored 
                                 //   - '12121234' or [1,2,1,2,1,2,3,4]: (custom) per-character index mapping agains the colors option
                                 //   - (function): A user-defined function, returning an integer matching an index value in the range of the colors option's array
 regenOnResize: true,            // Causes the band to re-render when the browser resizes
-regenOnOrientationChange: true, // Causes the band to re-render when the 
+regenOnOrientationChange: true, // Causes the band to re-render when the
 ignoreCss: false,               // Skips the application of CSS to make the band look 'right'.
                                 // When true you must provide your own CSS for the band's container and chunks
 containerClass: 'colorband',    // Class name to apply to each color band
