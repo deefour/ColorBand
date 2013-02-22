@@ -2,7 +2,7 @@
   "name": "jquery.colorband",
   "title": "ColorBand",
   "description": "jQuery plugin for adding a decorative band to the top of an element.",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "homepage": "https://github.com/deefour/colorband",
   "author": {
     "name": "Jason Daly and other contributors",
@@ -30,12 +30,12 @@
     "jquery": ">=1.7"
   },
   "devDependencies": {
-    "grunt": "0.4.0rc5",
-    "grunt-contrib-qunit": "0.1.1rc5",
-    "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-uglify": "0.1.1rc5",
-    "grunt-contrib-watch": "~0.1.4",
-    "grunt-contrib-concat": "0.1.2rc5",
+    "grunt": "0.4.0",
+    "grunt-contrib-qunit": "~0.1.1",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-contrib-concat": "~0.1.3",
     "grunt-cli": "~0.1.6"
   },
   "scripts": {
